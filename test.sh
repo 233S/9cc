@@ -1,15 +1,16 @@
 #!/bin/bash
-try(){
+
+try() {
   expected="$1"
   input="$2"
 
-  ./9cc "$input" > tmp.s
+  ./cc "$input" > tmp.s
   gcc -o tmp tmp.s
   ./tmp
   actual="$?"
 
   if [ "$actual" = "$expected" ]; then
-    echo "$input" => $actual"
+    echo "$input => $actual"
   else
     echo "$input => $expected expected, but got $actual"
     exit 1
